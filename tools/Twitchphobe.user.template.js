@@ -10,7 +10,7 @@
 // @inject-into  page
 // @run-at       document-start
 // @all-frames   true
-// @license      MIT
+// @license      https://creativecommons.org/licenses/by-nc/4.0/
 // ==/UserScript==
 
 /* ============================================================================

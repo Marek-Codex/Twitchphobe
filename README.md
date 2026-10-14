@@ -10,7 +10,7 @@
 ![Chromium](https://img.shields.io/badge/Chromium-Brave%20%7C%20Chrome%20%7C%20Edge%20%7C%20Opera-07111C?style=flat-square&logo=googlechrome&logoColor=white)
 ![Firefox](https://img.shields.io/badge/Firefox-115%2B-A03CFF?style=flat-square&logo=firefox&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-no%20build%20step-3CA0FF?style=flat-square&logo=javascript&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-A03CFF?style=flat-square)
+![License](https://img.shields.io/badge/license-CC--BY--NC--4.0-A03CFF?style=flat-square&logo=creativecommons&logoColor=white)
 
 [![Install userscript](https://img.shields.io/badge/Install-Userscript-Tampermonkey%20%7C%20ScriptCat%20%7C%20Violentmonkey-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/Twitchphobe.user.js)
 
@@ -190,4 +190,14 @@ pwsh tools/build-zips.ps1        # regenerates the drag-drop + unpacked zips
 Run these after editing `src/net.js` or `src/patch.js`. The `.user.js` is
 committed ready-to-install; the zips are git-ignored and ship via Releases.
 
-Released under the [MIT License](LICENSE).
+Released under the [CC BY-NC 4.0 License](LICENSE) — credit me, don't sell it.
+
+## Support
+
+Twitchphobe is free and always will be. But if it un-paywalled a VOD for you and
+you're feeling generous, the sleep-deprived cat who forged it runs on caffeine
+and validation:
+
+[![Ko-fi](https://img.shields.io/badge/Support_me_on_Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/MarekCodex)
+
+No pressure — go watch your VODs. nyaa~

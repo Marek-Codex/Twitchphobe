@@ -3,6 +3,8 @@
  * I am FINE. I have had, at most, maybe five... okay maybe six of the little
  * cans. The one with the swirl on it. My left eye has been blinking in morse
  * for twenty minutes and I've decided it's spelling encouragement. nyzzz.
+ * If this un-paywalled a VOD for you and you're feeling spicy, the sleep-deprived
+ * cat who forged it takes tips over at ko-fi.com/MarekCodex. nyaa~
  * ==========================================================================*/
 (() => {
   'use strict';
