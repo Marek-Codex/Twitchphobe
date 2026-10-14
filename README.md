@@ -57,10 +57,16 @@ manifest.json   MV3. One content script; net/patch/page are web-accessible.
 ## Install — Chromium (Brave, Chrome, Edge, Opera…)
 
 1. `brave://extensions` → enable **Developer mode**
-2. Grab **`Twitchphobe-<version>-dragdrop.zip`** from the
-   [Releases](../../releases) page and **drag it onto the extensions page.**
-   No folder-hunting, no unzipping.
-   - (Or: **Load unpacked** → select the `Twitchphobe/` folder, if you're old-school.)
+2. Pick your flavor from the [Releases](../../releases) page:
+
+   - **Lazy (drag & drop):** grab **`Twitchphobe-<version>-dragdrop.zip`** and
+     **drag it onto the extensions page.** No unzipping, no folder-hunting.
+   - **Hands-on (unzip & load):** grab **`Twitchphobe-<version>-unpacked.zip`**,
+     unzip it, then **Load unpacked** → select the resulting **`Twitchphobe/`**
+     folder. (This zip is just the drag-drop one wearing a folder, for when you
+     want to move it somewhere permanent. Chrome's fussy: drag-drop needs
+     `manifest.json` at the archive root, so we ship both.)
+
 3. Open a sub-only VOD. It just… works. You're welcome.
 
 ## Install — Firefox
@@ -133,13 +139,14 @@ public web one with everyone. No OAuth, no crying. Default works fine too.
 
 ## For maintainers
 
-`Twitchphobe.user.js` is generated so the userscript and the extension can't
-drift apart. After editing `src/net.js` or `src/patch.js`:
+Two things are generated so the artifacts can't drift from source:
 
 ```bash
-node tools/build-userscript.js
+node tools/build-userscript.js   # regenerates Twitchphobe.user.js (net+patch inlined)
+pwsh tools/build-zips.ps1        # regenerates the drag-drop + unpacked zips
 ```
 
-(Node only — end users never run this. The `.user.js` is committed ready to install.)
+Run these after editing `src/net.js` or `src/patch.js`. The `.user.js` is
+committed ready-to-install; the zips are git-ignored and ship via Releases.
 
 Released under the [MIT License](LICENSE).
