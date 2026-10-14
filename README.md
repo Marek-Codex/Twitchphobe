@@ -1,11 +1,26 @@
+<div align="center">
+
 # Twitchphobe
 
-Watch subscriber-only Twitch VODs without subscribing. Lightweight, no build
-step, no dependencies — just some plain JavaScript and a concerning amount of
-caffeine holding it all together.
+**Sub-only VODs, no subscription. Wicked simple, I know.**
 
-> For personal / research use. This only reads publicly-reachable HLS renditions;
-> it uses no account, credential, or entitlement. It's re-upholstery, not theft.
+![README visits](https://count.getloli.com/@marek-codex.twitchphobe?theme=booru-lewd)
+
+![Manifest](https://img.shields.io/badge/Manifest-V3-3CA0FF?style=flat-square)
+![Chromium](https://img.shields.io/badge/Chromium-Brave%20%7C%20Chrome%20%7C%20Edge%20%7C%20Opera-07111C?style=flat-square&logo=googlechrome&logoColor=white)
+![Firefox](https://img.shields.io/badge/Firefox-115%2B-A03CFF?style=flat-square&logo=firefox&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-no%20build%20step-3CA0FF?style=flat-square&logo=javascript&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-A03CFF?style=flat-square)
+
+**Watch subscriber-only Twitch VODs without subscribing.**
+
+</div>
+
+Lightweight browser extension, no build step, no dependencies — just some
+plain JavaScript and a concerning amount of caffeine holding it all together.
+
+> For personal / research use. It only reads publicly-reachable HLS renditions;
+> no account, credential, or entitlement. It's re-upholstery, not theft.
 
 ---
 
@@ -40,7 +55,9 @@ manifest.json   MV3. One content script; net/patch/page are web-accessible.
 ## Install — Chromium (Brave, Chrome, Edge, Opera…)
 
 1. `brave://extensions` → enable **Developer mode**
-2. **Drag `Twitchphobe-1.3.1-dragdrop.zip` onto the page.** Done. No folder-hunting.
+2. Grab **`Twitchphobe-<version>-dragdrop.zip`** from the
+   [Releases](../../releases) page and **drag it onto the extensions page.**
+   No folder-hunting, no unzipping.
    - (Or: **Load unpacked** → select the `Twitchphobe/` folder, if you're old-school.)
 3. Open a sub-only VOD. It just… works. You're welcome.
 
@@ -49,7 +66,8 @@ manifest.json   MV3. One content script; net/patch/page are web-accessible.
 Firefox is the dramatic one. Heads up:
 
 - **`about:debugging#/runtime/this-firefox`** → **This Firefox** → **Load Temporary
-  Add-on** → pick **`Twitchphobe-1.3.1.xpi`**.
+  Add-on** → pick **`Twitchphobe-<version>.xpi`** from
+  [Releases](../../releases).
 - ⚠️ **"Temporary" means temporary.** It unloads the moment you restart Firefox.
   This is *not* just a label — Mozilla's own docs say a temporary add-on "remains
   installed until you remove it or restart Firefox."
@@ -68,7 +86,7 @@ that's the only kind release Firefox will install permanently. Your options:
 
 The good news: **the code needs zero changes for any of this.** It's already
 MV3 with the `browser_specific_settings.gecko` block Firefox wants. The `.xpi`
-you see here *is* the Firefox format — it's just a zip wearing a fancy hat.
+*is* the Firefox format — it's just a zip wearing a fancy hat.
 
 ---
 
@@ -87,3 +105,5 @@ public web one with everyone. No OAuth, no crying. Default works fine too.
 - No build step, no dependencies, no tracking. It runs entirely client-side.
 - Comments in the source are written by someone who has been awake too long.
   They're informative. They're also a cry for help. Both can be true.
+
+Released under the [MIT License](LICENSE).
