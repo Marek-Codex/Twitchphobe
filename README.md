@@ -159,6 +159,17 @@ public web one with everyone. No OAuth, no crying. Default works fine too.
 
 ---
 
+## Credit
+
+The core playlist-synthesis approach is after
+[besuper/TwitchNoSub](https://github.com/besuper/TwitchNoSub) (Apache-2.0). This
+is an independent, leaner reimplementation — no vendored player, no build-time
+worker patching, no dependencies — with a hardened network layer, GraphQL
+variables instead of string-built queries, and `crypto`-seeded IDs. Full respect
+to the original for mapping out how Twitch's VOD CDN is laid out.
+
+---
+
 ## Notes
 
 - If a playlist synth ever fails, `patch.js` logs a `[Twitchphobe] …` line to the

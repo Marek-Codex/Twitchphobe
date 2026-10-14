@@ -138,10 +138,12 @@
   };
 
   // gql: POST a GraphQL query at Twitch and hand back parsed JSON (or null).
-  // Cached by the raw query string, because the SAME VOD gets asked about a lot
-  // and I am not paying that toll twice. Frugal queen behavior. *purrs at API*
-  const gql = async (query) => {
-    const key = `gql:${query}`;
+  // Takes optional `variables` so callers can parameterize instead of string-
+  // building IDs into the query — cleaner, injection-proof, less of a Twin of
+  // the reference tool. Cached by query+variables, because the SAME VOD gets
+  // asked about a lot and I am not paying that toll twice. *purrs at API*
+  const gql = async (query, variables) => {
+    const key = `gql:${query}:${variables ? JSON.stringify(variables) : ''}`;
     const hit = cached(key);
     if (hit !== undefined) return hit;
 
@@ -152,7 +154,7 @@
           'Client-Id': CONFIG.clientId,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ query })
+        body: JSON.stringify(variables ? { query, variables } : { query })
       });
       if (!res || !res.ok) return null;
 

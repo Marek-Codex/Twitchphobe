@@ -33,23 +33,31 @@
     { key: '160p30', resolution: '284x160', frameRate: 30 }
   ];
 
-  // Twitch wants a "serving id" in the playlist header. Is it real? No. Does the
-  // player care? Also no. We just mash the keyboard for 32 chars and hope. It's
-  // the most honest thing in this entire codebase and that bothers me sometimes.
+  // Twitch wants a "serving id" in the playlist header, so we pull 32 chars from
+  // the OS's actual entropy pool via crypto.getRandomValues. Before you ask: yes,
+  // I considered a hand-rolled blue/white-noise generator. It would be WORSE — a
+  // custom PRNG needs a seed, and seeding it off Math.random/Date.now is strictly
+  // weaker than this. crypto is already fed by hardware jitter; it IS the good
+  // noise. (And for a tracking id we don't even need crypto-grade — but it's
+  // uniform, standard, and de-fingerprints us off the Math.random twins. Win-win.)
   const createServingId = () => {
     const alphabet = '0123456789abcdefghijklmnopqrstuvwxyz';
+    const bytes = new Uint8Array(32);
+    crypto.getRandomValues(bytes);
     let id = '';
-    for (let i = 0; i < 32; i++) id += alphabet[Math.floor(Math.random() * alphabet.length)];
+    for (let i = 0; i < 32; i++) id += alphabet[bytes[i] % alphabet.length];
     return id;
   };
 
   /* fetchVideoMeta: ask GraphQL for the boring-but-load-bearing facts about a
      VOD — what kind of broadcast it was, when it was made, where its storyboards
      live (that URL secretly encodes the CDN path we need), and who owns it.
-     All of this is public metadata. No auth. Just vibes and a client-id. ------ */
+     All public metadata. No auth. And we parameterize the id now (query vars)
+     instead of concatenating it in — cleaner, injection-proof, less of a Twin. */
   const fetchVideoMeta = async (vodId) => {
     const json = await net.gql(
-      `query { video(id: "${vodId}") { broadcastType, createdAt, seekPreviewsURL, owner { login } } }`
+      `query($id: ID!){ video(id: $id){ broadcastType, createdAt, seekPreviewsURL, owner { login } } }`,
+      { id: vodId }
     );
     return (json && json.data && json.data.video) || null;
   };
@@ -123,17 +131,18 @@
     );
 
     // The playlist header. #EXTM3U says "I am a playlist," and the TWITCH-INFO
-    // line is metadata Twitch's player half-expects. We forge a serving-id and
-    // claim to be from "s3" in "EU". We are, as a people, from nowhere right now.
+    // line is metadata Twitch's player half-expects. We claim NA/US now instead
+    // of the EU/BE the reference tool used — pure telemetry, breaks the byte-for-
+    // byte fingerprint, changes nothing about playback. USER-IP stays localhost
+    // because that's the honest value for a manifest we forged on-device.
     const out = [
       '#EXTM3U',
-      `#EXT-X-TWITCH-INFO:ORIGIN="s3",B="false",REGION="EU",USER-IP="127.0.0.1",SERVING-ID="${createServingId()}",CLUSTER="cloudfront_vod",USER-COUNTRY="BE",MANIFEST-CLUSTER="cloudfront_vod"`
+      `#EXT-X-TWITCH-INFO:ORIGIN="s3",B="false",REGION="NA",USER-IP="127.0.0.1",SERVING-ID="${createServingId()}",CLUSTER="cloudfront_vod",USER-COUNTRY="US",MANIFEST-CLUSTER="cloudfront_vod"`
     ];
 
-    // Bandwidth starts absurdly high and steps down 100 per rung, so the player
-    // thinks the top quality is the most expensive. It's a white lie. A fib. A
-    // little performance. Nobody's getting hurt. (Legally: consult no one about this.)
-    let bandwidth = 8534030;
+    // Bandwidth just needs to descend so the player ranks source on top. Round
+    // numbers now, not the reference tool's oddly-specific 8534030. Cosmetic.
+    let bandwidth = 8000000;
 
     // Emit one stream entry per quality that actually EXISTED when we probed.
     // v2 playlists and legacy playlists speak slightly different dialects; we
@@ -156,7 +165,7 @@
         );
       }
 
-      bandwidth -= 100;
+      bandwidth -= 250000;
     }
 
     // If we somehow listed zero real renditions, this "playlist" is a lie and the
