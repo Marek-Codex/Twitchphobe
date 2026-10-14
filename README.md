@@ -12,6 +12,8 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-no%20build%20step-3CA0FF?style=flat-square&logo=javascript&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-A03CFF?style=flat-square)
 
+[![Install userscript](https://img.shields.io/badge/Install-Userscript-Tampermonkey%20%7C%20ScriptCat%20%7C%20Violentmonkey-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/Twitchphobe.user.js)
+
 **Watch subscriber-only Twitch VODs without subscribing.**
 
 </div>
@@ -90,6 +92,29 @@ MV3 with the `browser_specific_settings.gecko` block Firefox wants. The `.xpi`
 
 ---
 
+## Userscript (Tampermonkey / ScriptCat / Violentmonkey)
+
+No store, no manifest, no dev mode — just a userscript manager.
+
+[![Install userscript](https://img.shields.io/badge/One--click%20install-Twitchphobe.user.js-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/Twitchphobe.user.js)
+
+Click the button with a userscript manager installed and it'll offer to install.
+That's the whole one-click. `Twitchphobe.user.js` is committed at the repo root,
+so the link always serves the latest `main`. Same trick as the extension —
+it wraps the player worker and synthesizes the playlist — just packaged as one
+self-contained file with `net.js` + `patch.js` inlined.
+
+**One catch, because physics:** this has to run in the **page's** world to touch
+`window.Worker`. Most managers do that automatically with `@grant none`, but:
+
+- **ScriptCat:** set the script's injection mode to **Page** (it defaults to a
+  sandboxed content context, which can't see `window.Worker`).
+- **Violentmonkey / Tampermonkey:** works out of the box; the header already
+  declares `@inject-into page`.
+- **Greasemonkey 4+** is the flaky one — if it misbehaves, prefer the others.
+
+---
+
 ## Use your own client-id (optional)
 
 `src/net.js` → `CONFIG.clientId`. Register an app at [dev.twitch.tv](https://dev.twitch.tv),
@@ -105,5 +130,16 @@ public web one with everyone. No OAuth, no crying. Default works fine too.
 - No build step, no dependencies, no tracking. It runs entirely client-side.
 - Comments in the source are written by someone who has been awake too long.
   They're informative. They're also a cry for help. Both can be true.
+
+## For maintainers
+
+`Twitchphobe.user.js` is generated so the userscript and the extension can't
+drift apart. After editing `src/net.js` or `src/patch.js`:
+
+```bash
+node tools/build-userscript.js
+```
+
+(Node only — end users never run this. The `.user.js` is committed ready to install.)
 
 Released under the [MIT License](LICENSE).
