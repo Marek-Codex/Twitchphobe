@@ -12,7 +12,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-no%20build%20step-3CA0FF?style=flat-square&logo=javascript&logoColor=white)
 ![License](https://img.shields.io/badge/license-Apache--2.0-A03CFF?style=flat-square&logo=apache&logoColor=white)
 
-[![Install userscript](https://img.shields.io/badge/Install-Userscript-Tampermonkey%20%7C%20ScriptCat%20%7C%20Violentmonkey-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/Twitchphobe.user.js)
+[![Install userscript](https://img.shields.io/badge/Install-Userscript-Tampermonkey%20%7C%20ScriptCat%20%7C%20Violentmonkey-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/userscript/Twitchphobe.user.js)
 
 **Watch subscriber-only Twitch VODs without subscribing.**
 
@@ -132,10 +132,10 @@ MV3 with the `browser_specific_settings.gecko` block Firefox wants. The `.xpi`
 
 No store, no manifest, no dev mode — just a userscript manager.
 
-[![Install userscript](https://img.shields.io/badge/One--click%20install-Twitchphobe.user.js-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/Twitchphobe.user.js)
+[![Install userscript](https://img.shields.io/badge/One--click%20install-Twitchphobe.user.js-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/userscript/Twitchphobe.user.js)
 
 Click the button with a userscript manager installed and it'll offer to install.
-That's the whole one-click. `Twitchphobe.user.js` is committed at the repo root,
+That's the whole one-click. `userscript/Twitchphobe.user.js` is committed, so
 so the link always serves the latest `main`. Same trick as the extension —
 it wraps the player worker and synthesizes the playlist — just packaged as one
 self-contained file with `net.js` + `patch.js` inlined.

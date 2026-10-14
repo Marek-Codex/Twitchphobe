@@ -36,7 +36,7 @@ const out = template
   .replace(NET_TOKEN, JSON.stringify(net))
   .replace(PATCH_TOKEN, JSON.stringify(patch));
 
-const dest = path.join(root, 'Twitchphobe.user.js');
+const dest = path.join(root, 'userscript', 'Twitchphobe.user.js');
 fs.writeFileSync(dest, out);
 
 console.log(
