@@ -29,6 +29,7 @@ $files = @(
   'manifest.json'
   'README.md'
   'LICENSE'
+  'NOTICE'
   'icons/icon128.png'
   'src/content.js'
   'src/net.js'

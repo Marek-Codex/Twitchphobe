@@ -10,7 +10,7 @@
 // @inject-into  page
 // @run-at       document-start
 // @all-frames   true
-// @license      https://creativecommons.org/licenses/by-nc/4.0/
+// @license      Apache-2.0
 // ==/UserScript==
 
 /* ============================================================================
