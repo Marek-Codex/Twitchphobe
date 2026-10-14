@@ -59,3 +59,11 @@ function New-TwitchphobeZip {
 
 New-TwitchphobeZip -Path (Join-Path $out "Twitchphobe-$ver-dragdrop.zip") -Prefix $null
 New-TwitchphobeZip -Path (Join-Path $out "Twitchphobe-$ver-unpacked.zip") -Prefix 'Twitchphobe'
+
+# The .xpi is just the drag-drop archive (manifest.json at root) with a Firefox
+# hat on — Firefox's "Load Temporary Add-on" accepts it as-is. Copy, don't rebuild.
+$dragdrop = Join-Path $out "Twitchphobe-$ver-dragdrop.zip"
+$xpi      = Join-Path $out "Twitchphobe-$ver.xpi"
+Copy-Item $dragdrop $xpi -Force
+Write-Host ("built {0}  ({1} KB)" -f (Split-Path $xpi -Leaf), ([math]::Round((Get-Item $xpi).Length / 1KB, 1)))
+

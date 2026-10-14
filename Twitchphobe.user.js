@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitchphobe
 // @namespace    https://github.com/Marek-Codex/Twitchphobe
-// @version      1.3.1
+// @version      1.4.0
 // @description  Watch subscriber-only Twitch VODs without subscribing. Lightweight, no build step.
 // @author       Marek-Codex
 // @match        *://*.twitch.tv/*
