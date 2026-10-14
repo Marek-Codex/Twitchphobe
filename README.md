@@ -26,6 +26,33 @@ plain JavaScript and a concerning amount of caffeine holding it all together.
 
 ---
 
+## Why should this be locked away from you?
+
+A whole institution exists on the idea that knowledge and culture shouldn't be
+gated away from the people trying to reach it. The **Internet Archive** calls
+itself "a library," exists to provide "universal access to all knowledge," and
+digitizes books precisely because "not everyone has access" to the collections
+that lock them away.
+
+**Neil Gaiman** put it about as plainly as it can be put:
+
+> "Libraries are about freedom. Freedom to read, freedom of ideas, freedom of
+> communication. They're about education, pleasure, information, access… They
+> are closing the gates that should be open."
+> — Neil Gaiman, "Why our future depends on libraries, reading and daydreaming" (2013)
+
+It's a narrow claim, and an honest one: **access shouldn't be arbitrarily
+withheld from the person standing right there trying to reach it.** Twitchphobe
+makes that same narrow claim about a subscriber-only VOD — and stops there. It
+doesn't download it, repackage it, or hand it to anyone. It just lets your player
+play it for you.
+
+<sub>Sources:
+[Internet Archive](https://archive.org/about/) ·
+[Neil Gaiman / The Guardian](https://www.theguardian.com/books/2013/oct/15/neil-gaiman-future-libraries-reading-daydreaming)</sub>
+
+---
+
 ## Distribution
 
 **GitHub Releases is the canonical source.** There's no Chrome Web Store or
