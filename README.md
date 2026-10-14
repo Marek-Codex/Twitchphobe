@@ -26,6 +26,21 @@ plain JavaScript and a concerning amount of caffeine holding it all together.
 
 ---
 
+## Distribution
+
+**GitHub Releases is the canonical source.** There's no Chrome Web Store or
+Firefox AMO listing, and there won't be — this is a paywall workaround, which
+both stores explicitly prohibit ("circumventing paywalls," "unauthorized
+streaming of copyrighted media"). Rather than lose a fight with reviewers — or
+risk a developer account — this ships the honest way: grab a build from
+[Releases](../../releases) and load it yourself.
+
+Everything lives there — the Chromium zips, the Firefox `.xpi`, and the
+userscript. No store middleman, no review to fail, no account to ban. Just a
+cat, a folder, and a release page.
+
+---
+
 ## Works on (basically) everything
 
 The code is plain MV3 + standard APIs, so it runs on whole *families* of
