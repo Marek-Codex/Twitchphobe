@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Twitchphobe",
+  "version": "1.3.1",
+  "description": "Watch subscriber-only Twitch VODs without subscribing. Lightweight, no build step.",
+  "minimum_chrome_version": "111",
+  "icons": { "128": "icons/icon128.png" },
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitch.tv/*"],
+      "js": ["src/content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/net.js", "src/patch.js", "src/page.js"],
+      "matches": ["*://*.twitch.tv/*"]
+    }
+  ],
+  "host_permissions": ["https://*.twitch.tv/*"],
+  "browser_specific_settings": {
+    "gecko": { "id": "twitchphobe@local", "strict_min_version": "115.0" }
+  }
+}
