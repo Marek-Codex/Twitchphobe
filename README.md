@@ -28,11 +28,26 @@ plain JavaScript and a concerning amount of caffeine holding it all together.
 
 ## Works on (basically) everything
 
-| Browser | How you load it | Stays after restart? |
-|---|---|---|
-| **Brave / Chrome / Edge / Opera / Vivaldi** (any Chromium) | Drag the `.zip` onto the extensions page in dev mode, or *Load unpacked* | ✅ Yes |
-| **Firefox** | `about:debugging` → **Load Temporary Add-on** (pick the `.xpi`) | ⚠️ Not by default — see below |
-| **Safari** | Needs conversion first (`safari-web-extension-converter`) — a "problem for another day" | Depends on packaging |
+The code is plain MV3 + standard APIs, so it runs on whole *families* of
+browsers with no changes. Same bytes, different wrappers:
+
+| Family | Examples | Load via | Stays after restart? |
+|---|---|---|---|
+| **Chromium** | Chrome, Edge, **Brave**, Opera, Opera GX, Vivaldi, Arc, Yandex, Samsung Internet, Chromium, Thorium, **Kiwi (Android)** | `-dragdrop.zip` or `-unpacked.zip` | ✅ Yes |
+| **Firefox** | Firefox, LibreWolf, Waterfox, Floorp | `.xpi` (see below) | ⚠️ Temporary unless signed |
+| **Userscript** | Tampermonkey, ScriptCat, Violentmonkey | `Twitchphobe.user.js` | ✅ Yes |
+| **Safari** | Safari 15+ (macOS/iOS) | needs a Mac — `safari-web-extension-converter` | Depends on packaging |
+
+**Safari is the only real gap**, and it's blocked by tooling, not code: converting
+a WebExtension to a Safari Web Extension needs macOS + Xcode (`xcrun
+safari-web-extension-converter`). The code is WebKit-compatible as-is; it just
+needs a Mac (or a macOS CI runner) to wrap and sign it. A job for another day.
+
+**Mobile note:** Chrome and Edge don't run extensions on Android at all, so
+phones get Kiwi (works with the unpacked zip), Firefox for Android (via an AMO
+listing, though its add-on set is curated), or Safari iOS (converted). Limited by
+the platforms, not by us.
+
 
 ---
 
