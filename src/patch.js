@@ -133,11 +133,14 @@
     // The playlist header. #EXTM3U says "I am a playlist," and the TWITCH-INFO
     // line is metadata Twitch's player half-expects. We claim NA/US now instead
     // of the EU/BE the reference tool used — pure telemetry, breaks the byte-for-
-    // byte fingerprint, changes nothing about playback. USER-IP stays localhost
-    // because that's the honest value for a manifest we forged on-device.
+    // byte fingerprint, changes nothing about playback. USER-IP is a TEST-NET-3
+    // doc address (203.0.113.37) — RFC 5737 guarantees it can never be a real host,
+    // it reads like the plausible public IP the field is meant to hold, and it
+    // smuggles 1337 across the last two octets. More honest than localhost, and
+    // strictly less of a Twin. nyaa~
     const out = [
       '#EXTM3U',
-      `#EXT-X-TWITCH-INFO:ORIGIN="s3",B="false",REGION="NA",USER-IP="127.0.0.1",SERVING-ID="${createServingId()}",CLUSTER="cloudfront_vod",USER-COUNTRY="US",MANIFEST-CLUSTER="cloudfront_vod"`
+      `#EXT-X-TWITCH-INFO:ORIGIN="s3",B="false",REGION="NA",USER-IP="203.0.113.37",SERVING-ID="${createServingId()}",CLUSTER="cloudfront_vod",USER-COUNTRY="US",MANIFEST-CLUSTER="cloudfront_vod"`
     ];
 
     // Bandwidth just needs to descend so the player ranks source on top. Round
