@@ -2,7 +2,7 @@
 // @name         Twitchphobe
 // @namespace    https://github.com/Marek-Codex/Twitchphobe
 // @version      1.4.0
-// @description  Watch subscriber-only Twitch VODs without subscribing. Lightweight, no build step.
+// @description  Watch subscriber-only Twitch VODs without subscribing. Lightweight, no build step — just plain JS and a concerning amount of caffeine.
 // @author       Marek-Codex
 // @match        *://*.twitch.tv/*
 // @icon         https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/icons/icon128.png

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Twitchphobe",
   "version": "1.4.0",
-  "description": "Watch subscriber-only Twitch VODs without subscribing. Lightweight, no build step.",
+  "description": "Watch subscriber-only Twitch VODs without subscribing. Lightweight, no build step — just plain JavaScript and a concerning amount of caffeine.",
   "minimum_chrome_version": "111",
   "icons": { "128": "icons/icon128.png" },
   "content_scripts": [
