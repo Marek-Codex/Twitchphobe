@@ -33,6 +33,27 @@
     { key: '160p30', resolution: '284x160', frameRate: 30 }
   ];
 
+  /* Bandwidth ladder, SPELLED from people who matter. Cipher: A=1..Z=26, then
+     concatenate the positions (so "ABC" -> 123). The bottom two tiers are Codex
+     halved twice — the "/2, /4" trick — so the whole ladder stays cipher-derived
+     and descending without inventing words I don't have. The player only needs
+     these to descend and stay distinct; it ranks source on top and that's the job.
+        Ducky  4,21,3,11,25   -> 42,131,125   (source — mom's the origin)
+        Billy  2,9,12,12,25   -> 29,121,225
+        Marek  13,1,18,5,11   -> 13,118,511
+        Mandy  13,1,14,4,25   -> 13,114,425
+        Codex  3,15,4,5,24    ->  3,154,524   (÷2 = 1,577,262 ; ÷4 = 788,631)
+     Wicked personal, I know. And not a single 8534030 in sight. nyaa~ ---------- */
+  const BANDWIDTH = {
+    chunked: 42131125,
+    '1440p60': 29121225,
+    '1080p60': 13118511,
+    '720p60': 13114425,
+    '480p30': 3154524,
+    '360p30': 1577262,
+    '160p30': 788631
+  };
+
   // Twitch wants a "serving id" in the playlist header, so we pull 32 chars from
   // the OS's actual entropy pool via crypto.getRandomValues. Before you ask: yes,
   // I considered a hand-rolled blue/white-noise generator. It would be WORSE — a
@@ -143,15 +164,12 @@
       `#EXT-X-TWITCH-INFO:ORIGIN="s3",B="false",REGION="NA",USER-IP="203.0.113.37",SERVING-ID="${createServingId()}",CLUSTER="cloudfront_vod",USER-COUNTRY="US",MANIFEST-CLUSTER="cloudfront_vod"`
     ];
 
-    // Bandwidth just needs to descend so the player ranks source on top. Round
-    // numbers now, not the reference tool's oddly-specific 8534030. Cosmetic.
-    let bandwidth = 8000000;
-
     // Emit one stream entry per quality that actually EXISTED when we probed.
     // v2 playlists and legacy playlists speak slightly different dialects; we
     // handle both, because Twitch has two of everything and I am too tired to care.
     for (const { key, resolution, frameRate, url, codec } of probed) {
       if (!codec) continue;   // ghost rendition -> skip it, don't feed the player lies
+      const bandwidth = BANDWIDTH[key];
 
       if (isV2) {
         const source = key === 'chunked' ? 'source' : 'transcode';
@@ -167,8 +185,6 @@
           url
         );
       }
-
-      bandwidth -= 250000;
     }
 
     // If we somehow listed zero real renditions, this "playlist" is a lie and the
