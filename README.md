@@ -12,7 +12,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-no%20build%20step-3CA0FF?style=flat-square&logo=javascript&logoColor=white)
 ![License](https://img.shields.io/badge/license-Apache--2.0-A03CFF?style=flat-square&logo=apache&logoColor=white)
 
-[![Install userscript](https://img.shields.io/badge/Install-Userscript-Tampermonkey%20%7C%20ScriptCat%20%7C%20Violentmonkey-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/userscript/Twitchphobe.user.js)
+[![Install userscript](https://img.shields.io/badge/Install-Userscript--Tampermonkey%20%7C%20ScriptCat%20%7C%20Violentmonkey-A03CFF?style=for-the-badge&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Marek-Codex/Twitchphobe/main/userscript/Twitchphobe.user.js)
 
 **Watch subscriber-only Twitch VODs without subscribing.**
 
